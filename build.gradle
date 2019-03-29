@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.treefuerza.demos'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 sourceCompatibility = 1.8
 
@@ -12,11 +12,16 @@ repositories {
     mavenCentral()
 }
 
+jar {
+    manifest { attributes 'Main-Class': 'com.treefuerza.pruebas.vertx.MainKt' }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    implementation "io.vertx:vertx-web:3.6.3"
-    implementation "io.vertx:vertx-lang-kotlin:3.6.3"
-    implementation "io.vertx:vertx-lang-kotlin-coroutines:3.6.3"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile "io.vertx:vertx-web:3.6.3"
+    compile "io.vertx:vertx-lang-kotlin:3.6.3"
+    compile "io.vertx:vertx-lang-kotlin-coroutines:3.6.3"
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
